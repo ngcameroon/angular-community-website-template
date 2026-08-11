@@ -1,11 +1,12 @@
 import { Component, signal, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { COMMUNITY, NAV_LINKS } from '../../../core/community.config';
+import { GithubStarComponent } from '../github-star/github-star';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, GithubStarComponent],
   template: `
     <nav
       class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
@@ -39,7 +40,11 @@ import { COMMUNITY, NAV_LINKS } from '../../../core/community.config';
           }
         </div>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5">
+          @if (community.starRepo; as repo) {
+            <app-github-star class="nav-star" [repo]="repo" />
+          }
+
           <a
             [href]="community.githubUrl"
             target="_blank"
@@ -79,6 +84,9 @@ import { COMMUNITY, NAV_LINKS } from '../../../core/community.config';
                 {{ link.label }}
               </a>
             }
+            @if (community.starRepo; as repo) {
+              <app-github-star class="mt-3 w-full" [repo]="repo" (click)="mobileOpen.set(false)" />
+            }
             <a
               [href]="community.githubUrl"
               target="_blank"
@@ -114,13 +122,22 @@ import { COMMUNITY, NAV_LINKS } from '../../../core/community.config';
       color: var(--color-text-primary);
       background-color: var(--color-surface-hover);
     }
-    .nav-cta {
+    .nav-cta,
+    .nav-star {
       display: none;
     }
     @media (min-width: 768px) {
-      .nav-cta {
+      .nav-cta,
+      .nav-star {
         display: inline-flex;
       }
+    }
+    app-github-star.w-full {
+      display: flex;
+    }
+    app-github-star.w-full a {
+      width: 100%;
+      justify-content: center;
     }
     .nav-link-active {
       color: var(--color-text-primary) !important;

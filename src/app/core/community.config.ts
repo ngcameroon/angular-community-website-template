@@ -60,6 +60,12 @@ export const COMMUNITY = {
   /** The GitHub organisation behind the community. Drives the primary CTA. */
   githubUrl: 'https://github.com/your-org',
 
+  /**
+   * Repository shown by the header's star button, in `owner/name` form. It must be
+   * public for the count to load. Set to null to hide the button entirely.
+   */
+  starRepo: 'ngcameroon/angular-community-website-template' as string | null,
+
   socials: [
     { label: 'GitHub', url: 'https://github.com/your-org', network: 'github' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/company/your-org', network: 'linkedin' },
