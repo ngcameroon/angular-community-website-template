@@ -56,6 +56,12 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
               <span aria-hidden="true">&rarr;</span>
             </a>
           }
+          @if (item.demoUrl) {
+            <a [href]="item.demoUrl" target="_blank" rel="noopener noreferrer" class="link">
+              Live demo
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          }
         </span>
       </footer>
     </article>

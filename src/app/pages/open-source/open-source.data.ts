@@ -15,6 +15,7 @@ export interface OpenSourceProject {
   readonly repoUrl: string;
   readonly npmUrl: string | null;
   readonly docsUrl: string | null;
+  readonly demoUrl: string | null;
   readonly installCommand: string | null;
 }
 
@@ -39,6 +40,7 @@ export const OPEN_SOURCE_PROJECTS: readonly OpenSourceProject[] = [
     repoUrl: 'https://github.com/mofirojean/ngx-transforms',
     npmUrl: 'https://www.npmjs.com/package/ngx-transforms',
     docsUrl: null,
+    demoUrl: null,
     installCommand: 'npm install ngx-transforms',
   },
   {
@@ -55,6 +57,7 @@ export const OPEN_SOURCE_PROJECTS: readonly OpenSourceProject[] = [
     repoUrl: 'https://github.com/mofirojean/angular-ui-skills',
     npmUrl: null,
     docsUrl: 'https://angular-ui-skills-docs.vercel.app',
+    demoUrl: null,
     installCommand: 'npx skills@latest add mofirojean/angular-ui-skills -g',
   },
   {
@@ -71,6 +74,7 @@ export const OPEN_SOURCE_PROJECTS: readonly OpenSourceProject[] = [
     repoUrl: 'https://github.com/ngcameroon/angular-community-website-template',
     npmUrl: null,
     docsUrl: null,
+    demoUrl: 'https://angular-community-website-template.vercel.app',
     installCommand: 'npx degit ngcameroon/angular-community-website-template my-community',
   },
 ];
