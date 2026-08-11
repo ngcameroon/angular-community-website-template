@@ -1,0 +1,8 @@
+{
+  "name": "Angular Community",
+  "short_name": "ngCommunity",
+  "icons": [{ "src": "brand/logo.svg", "sizes": "any", "type": "image/svg+xml" }],
+  "theme_color": "#DD0031",
+  "background_color": "#0F0F13",
+  "display": "standalone"
+}

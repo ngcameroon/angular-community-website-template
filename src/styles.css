@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Inter+Tight:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   Angular Cameroon Design System
+   ============================================ */
+
+@theme {
+  --color-bright-blue: oklch(51.01% .274 263.83);
+  --color-electric-violet: oklch(53.18% .28 296.97);
+  --color-vivid-pink: oklch(69.02% .277 332.77);
+  --color-hot-red: oklch(59.91% .239 8.14);
+  --color-orange-red: oklch(63.32% .24 31.68);
+
+  --color-angular-red: #DD0031;
+  --color-angular-dark: #C3002F;
+  --color-angular-blue: #1976D2;
+
+  --color-accent-green: #007A5E;
+  --color-accent-red: #CE1126;
+  --color-accent-gold: #FCD116;
+
+  --color-page-bg: #0F0F13;
+  --color-surface: #131318;
+  --color-surface-elevated: #1A1A23;
+  --color-surface-card: #16161F;
+  --color-surface-hover: #22222E;
+
+  --color-text-primary: #F0F0F2;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-card: rgba(255, 255, 255, 0.06);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* === Registered custom properties for animation === */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-pos {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+
+/* === Keyframes === */
+@keyframes spin-gradient {
+  to { --angle: 360deg; }
+}
+
+@keyframes shimmer {
+  0% { --gradient-pos: 0%; }
+  100% { --gradient-pos: 200%; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(1deg); }
+  75% { transform: translateY(4px) rotate(-0.5deg); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(6px) rotate(-1deg); }
+  66% { transform: translateY(-10px) rotate(0.5deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes draw-line {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* === Base === */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-page-bg);
+  color: var(--color-text-primary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: oklch(69.02% .277 332.77 / 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-page-bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+/* === Utility classes === */
+.gradient-text {
+  background: linear-gradient(90deg, var(--color-orange-red) 0%, var(--color-vivid-pink) 50%, var(--color-electric-violet) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-accent {
+  background: linear-gradient(90deg in oklch, var(--color-accent-green) 0%, var(--color-accent-red) 50%, var(--color-accent-gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animated gradient border card */
+.gradient-border-card {
+  position: relative;
+  border-radius: 0.75rem;
+  background: var(--color-surface-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+}
+.gradient-border-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--angle, 0deg), var(--color-orange-red), var(--color-vivid-pink), var(--color-electric-violet), var(--color-bright-blue), var(--color-orange-red));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.gradient-border-card:hover {
+  border-color: transparent;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px oklch(69.02% .277 332.77 / 0.06);
+}
+.gradient-border-card:hover::before {
+  opacity: 1;
+  animation: spin-gradient 6s linear infinite;
+}
+
+/* Rotating Angular-gradient ring, for the next live session card.
+   The ring is a masked conic gradient on ::before; the halo is the same gradient
+   blurred behind the card, so both sweep in sync. */
+.angular-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    var(--color-orange-red),
+    var(--color-vivid-pink),
+    var(--color-electric-violet),
+    var(--color-bright-blue),
+    var(--color-orange-red)
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  animation: spin-gradient 6s linear infinite;
+}
+
+.angular-halo {
+  position: absolute;
+  inset: -5px;
+  border-radius: 1.25rem;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    var(--color-orange-red),
+    var(--color-vivid-pink),
+    var(--color-electric-violet),
+    var(--color-bright-blue),
+    var(--color-orange-red)
+  );
+  filter: blur(22px);
+  opacity: 0.4;
+  pointer-events: none;
+  animation:
+    spin-gradient 6s linear infinite,
+    halo-breathe 5s ease-in-out infinite;
+}
+
+@keyframes halo-breathe {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .angular-ring::before,
+  .angular-halo {
+    animation: none;
+  }
+}
+
+/* Gradient outline button */
+.btn-gradient-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, var(--color-orange-red), var(--color-vivid-pink), var(--color-electric-violet));
+  border: none;
+  isolation: isolate;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+/* Inner fill that masks the gradient, creating outline effect */
+.btn-gradient-outline::before {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border-radius: calc(0.5rem - 1.5px);
+  background: var(--color-page-bg);
+  z-index: -1;
+  transition: opacity 0.35s ease;
+}
+/* Gradient text via clipping on the label span */
+.btn-gradient-outline .btn-label {
+  background: linear-gradient(90deg, var(--color-orange-red), var(--color-vivid-pink), var(--color-electric-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: -webkit-text-fill-color 0.35s ease;
+}
+/* Hover: remove inner fill, revealing full gradient bg, text goes white */
+.btn-gradient-outline:hover {
+  box-shadow: 0 8px 30px oklch(69.02% .277 332.77 / 0.25);
+  transform: translateY(-1px);
+}
+.btn-gradient-outline:hover::before {
+  opacity: 0;
+}
+.btn-gradient-outline:hover .btn-label {
+  background: none;
+  -webkit-text-fill-color: #fff;
+}
+
+/* Buttons */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-angular-red) 0%, var(--color-hot-red) 100%);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 30px oklch(59.91% .239 8.14 / 0.35), 0 0 60px oklch(59.91% .239 8.14 / 0.15);
+  transform: translateY(-2px);
+}
+.btn-primary:hover::after {
+  transform: translateX(100%);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  background: var(--color-surface-hover);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+/* Scroll-reveal animation base */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================
+   ng-diagram theming (roadmap journey canvas)
+
+   Loaded after node_modules/ng-diagram/styles.css in angular.json, so these win
+   on equal specificity. Kept global because the library's internal DOM is out of
+   reach of component styles.
+   ============================================ */
+ng-diagram {
+  /* Week and milestone nodes paint their own card, so the wrapper stays
+     transparent. Its radius must match the card's, since the selection ring is
+     drawn on the wrapper. */
+  --ngd-node-background-color: transparent;
+  --ngd-node-border-color: transparent;
+  --ngd-node-border-color-hover: transparent;
+  --ngd-node-border-size: 0;
+  --ngd-node-border-radius: 0.875rem;
+
+  --ngd-diagram-background-color: #101017;
+  --ngd-background-dot-color: rgba(255, 255, 255, 0.11);
+
+  --ngd-default-edge-stroke: rgba(255, 255, 255, 0.22);
+  --ngd-default-edge-stroke-hover: var(--color-vivid-pink);
+  --ngd-default-edge-stroke-selected: var(--color-vivid-pink);
+
+  --ngd-selected-node-box-shadow: 0 0 0 3px oklch(69.02% 0.277 332.77 / 0.32);
+
+  --ngd-minimap-background: rgba(20, 20, 28, 0.86);
+  --ngd-minimap-border-color: rgba(255, 255, 255, 0.08);
+  --ngd-minimap-border-radius: 0.75rem;
+  --ngd-minimap-margin: 0.75rem;
+  --ngd-minimap-node-color: var(--color-vivid-pink);
+  --ngd-minimap-node-opacity: 0.55;
+  --ngd-minimap-diagram-bounds-color: rgba(255, 255, 255, 0.22);
+  --ngd-minimap-viewport-stroke-color: rgba(255, 255, 255, 0.5);
+
+  --ngd-txt-primary-default: var(--color-text-primary);
+
+  --edge-stroke-dasharray: 6 9;
+  --edge-stroke-width: 2;
+}
+
+/* A slow current along the path, so the journey reads as having a direction. */
+ng-diagram-default-edge svg path:first-of-type {
+  animation: journey-current 2.4s linear infinite;
+}
+
+@keyframes journey-current {
+  to {
+    stroke-dashoffset: -30;
+  }
+}
+
+/* The selected card lifts out of the canvas. Global because the class is applied
+   to the node host by ng-diagram's own directive. */
+ng-diagram app-week-node.ng-diagram-node-selected .card,
+ng-diagram app-milestone-node.ng-diagram-node-selected .milestone {
+  border-color: oklch(69.02% 0.277 332.77 / 0.75);
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.5),
+    0 0 44px oklch(69.02% 0.277 332.77 / 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ng-diagram-default-edge svg path:first-of-type {
+    animation: none;
+  }
+  ng-diagram {
+    --edge-stroke-dasharray: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
