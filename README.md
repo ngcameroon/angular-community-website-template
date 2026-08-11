@@ -4,6 +4,8 @@ A production-ready website for an Angular community group. Fork it, edit one con
 
 Built and maintained by [Angular Cameroon](https://github.com/ngcameroon). Originally the ngCameroon site, opened up so other communities do not have to start from an empty `ng new`.
 
+**Live demo:** [template.ngcameroon.com](https://template.ngcameroon.com)
+
 ## What you get
 
 - **Landing page** with a hero, community pillars, and a featured project spotlight

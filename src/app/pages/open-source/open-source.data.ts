@@ -74,7 +74,7 @@ export const OPEN_SOURCE_PROJECTS: readonly OpenSourceProject[] = [
     repoUrl: 'https://github.com/ngcameroon/angular-community-website-template',
     npmUrl: null,
     docsUrl: null,
-    demoUrl: 'https://angular-community-website-template.vercel.app',
+    demoUrl: 'https://template.ngcameroon.com',
     installCommand: 'npx degit ngcameroon/angular-community-website-template my-community',
   },
 ];
