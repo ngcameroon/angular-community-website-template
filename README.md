@@ -20,7 +20,7 @@ Built and maintained by [Angular Cameroon](https://github.com/ngcameroon). Origi
 ## Getting started
 
 ```bash
-npx degit ngcameroon/angular-community-template my-community
+npx degit ngcameroon/angular-community-website-template my-community
 cd my-community
 npm install
 npm start

@@ -41,7 +41,7 @@ export const OPEN_SOURCE_PROJECTS: readonly OpenSourceProject[] = [
   },
   {
     id: 'community-template',
-    name: 'angular-community-template',
+    name: 'angular-community-website-template',
     tagline: 'A website template any Angular community can fork',
     description:
       'The site you are reading, turned into a starting point. Angular 21 with SSR, prerendering, and Tailwind CSS 4, plus a roadmap timeline and a meetups scheduler. Change one config file to make it yours.',
@@ -50,8 +50,8 @@ export const OPEN_SOURCE_PROJECTS: readonly OpenSourceProject[] = [
     icon: 'templates',
     accent: 'oklch(53.18% 0.28 296.97)',
     tags: ['Angular 21', 'SSR + prerender', 'Tailwind 4', 'Config driven'],
-    repoUrl: 'https://github.com/ngcameroon/angular-community-template',
+    repoUrl: 'https://github.com/ngcameroon/angular-community-website-template',
     npmUrl: null,
-    installCommand: 'npx degit ngcameroon/angular-community-template my-community',
+    installCommand: 'npx degit ngcameroon/angular-community-website-template my-community',
   },
 ];
