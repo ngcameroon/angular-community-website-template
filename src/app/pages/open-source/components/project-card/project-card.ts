@@ -50,6 +50,12 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
               <span aria-hidden="true">&rarr;</span>
             </a>
           }
+          @if (item.docsUrl) {
+            <a [href]="item.docsUrl" target="_blank" rel="noopener noreferrer" class="link">
+              Docs
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          }
         </span>
       </footer>
     </article>
@@ -181,7 +187,7 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
       padding: 0.5rem 0.6875rem;
     }
     .prompt {
-      color: var(--color-accent-green, #007a5e);
+      color: var(--color-cameroon-green, #007a5e);
       font-family: var(--font-mono, monospace);
       font-size: 0.75rem;
     }

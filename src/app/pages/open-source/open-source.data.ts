@@ -14,6 +14,7 @@ export interface OpenSourceProject {
   readonly tags: readonly string[];
   readonly repoUrl: string;
   readonly npmUrl: string | null;
+  readonly docsUrl: string | null;
   readonly installCommand: string | null;
 }
 
@@ -37,7 +38,24 @@ export const OPEN_SOURCE_PROJECTS: readonly OpenSourceProject[] = [
     tags: ['Standalone pipes', 'Tree-shakable', 'Signals ready', 'Fully typed'],
     repoUrl: 'https://github.com/mofirojean/ngx-transforms',
     npmUrl: 'https://www.npmjs.com/package/ngx-transforms',
+    docsUrl: null,
     installCommand: 'npm install ngx-transforms',
+  },
+  {
+    id: 'angular-ui-skills',
+    name: 'angular-ui-skills',
+    tagline: 'Agent skills that teach AI assistants to build Angular UIs',
+    description:
+      'Per-library agent skills for Claude Code, Cursor, Copilot, and Gemini, covering Spartan/ng, PrimeNG, NG-ZORRO, and Angular Material, plus a cross-cutting design discipline skill. Composes with the angular-developer base skill.',
+    maintainer: 'mofirojean',
+    status: 'live',
+    icon: 'ai',
+    accent: 'oklch(69.02% 0.277 332.77)',
+    tags: ['Agent skills', 'Spartan/ng', 'PrimeNG', 'Material & ZORRO'],
+    repoUrl: 'https://github.com/mofirojean/angular-ui-skills',
+    npmUrl: null,
+    docsUrl: 'https://angular-ui-skills-docs.vercel.app',
+    installCommand: 'npx skills@latest add mofirojean/angular-ui-skills -g',
   },
   {
     id: 'community-template',
@@ -52,6 +70,7 @@ export const OPEN_SOURCE_PROJECTS: readonly OpenSourceProject[] = [
     tags: ['Angular 21', 'SSR + prerender', 'Tailwind 4', 'Config driven'],
     repoUrl: 'https://github.com/ngcameroon/angular-community-website-template',
     npmUrl: null,
+    docsUrl: null,
     installCommand: 'npx degit ngcameroon/angular-community-website-template my-community',
   },
 ];
