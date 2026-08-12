@@ -1,6 +1,13 @@
 {
   "name": "angular-community-website-template",
   "version": "0.0.0",
+  "description": "A website template any Angular community can fork: landing page, roadmap timeline, meetups scheduler, and open source showcase.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngcameroon/angular-community-website-template.git"
+  },
+  "homepage": "https://template.ngcameroon.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
