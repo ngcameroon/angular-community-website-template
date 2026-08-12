@@ -132,10 +132,26 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
     }
     .name {
       font-family: var(--font-mono, monospace);
-      font-size: 1rem;
+      font-size: 0.9375rem;
       font-weight: 600;
+      line-height: 1.3;
       color: var(--color-text-primary, #f0f0f2);
       overflow-wrap: anywhere;
+    }
+    /* On phones the icon and badge leave the name too little room, so it breaks
+       into a stack of fragments. Give it the full card width on its own row. */
+    @media (max-width: 639px) {
+      .head {
+        flex-wrap: wrap;
+        row-gap: 0.625rem;
+      }
+      .ident {
+        order: 3;
+        flex: 1 1 100%;
+      }
+      .status {
+        margin-left: auto;
+      }
     }
     .tagline {
       margin-top: 0.1875rem;
@@ -191,9 +207,8 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
       margin-top: 1rem;
       display: flex;
       min-width: 0;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.5rem;
-      overflow-x: auto;
       border-radius: 0.5rem;
       border: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.08));
       background: var(--color-page-bg, #0f0f13);
@@ -204,11 +219,15 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
       font-family: var(--font-mono, monospace);
       font-size: 0.75rem;
     }
+    /* Wrapping beats a horizontal scrollbar here: a clipped install command
+       looks complete but silently hides the rest of itself. */
     .terminal code {
       font-family: var(--font-mono, monospace);
       font-size: 0.6875rem;
+      line-height: 1.5;
       color: var(--color-text-secondary, #a1a1aa);
-      white-space: nowrap;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
     .foot {
       margin-top: auto;
