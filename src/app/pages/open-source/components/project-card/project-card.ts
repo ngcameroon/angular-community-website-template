@@ -67,14 +67,19 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
     </article>
   `,
   styles: `
+    /* Grid and flex items default to min-width:auto, so the nowrap install
+       command below would stretch the card past the viewport instead of
+       scrolling inside it. These min-width:0 rules let it shrink. */
     :host {
       display: block;
       height: 100%;
+      min-width: 0;
     }
     .card {
       position: relative;
       display: flex;
       height: 100%;
+      min-width: 0;
       flex-direction: column;
       overflow: hidden;
       border-radius: 0.875rem;
@@ -105,6 +110,7 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
     }
     .head {
       display: flex;
+      min-width: 0;
       align-items: flex-start;
       gap: 0.875rem;
     }
@@ -184,6 +190,7 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
     .terminal {
       margin-top: 1rem;
       display: flex;
+      min-width: 0;
       align-items: center;
       gap: 0.5rem;
       overflow-x: auto;
@@ -206,9 +213,10 @@ import { STATUS_LABEL, type OpenSourceProject } from '../../open-source.data';
     .foot {
       margin-top: auto;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
+      gap: 0.5rem 0.75rem;
       border-top: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.08));
       padding-top: 0.875rem;
       margin-top: 1.25rem;
